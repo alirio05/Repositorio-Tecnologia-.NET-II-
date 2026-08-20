@@ -1,0 +1,43 @@
+CREATE DATABASE ClinicaDB;
+GO
+
+USE ClinicaDB;
+GO
+
+CREATE TABLE Pacientes
+(
+    PacienteId INT IDENTITY(1,1) PRIMARY KEY,
+    Nombres VARCHAR(100) NOT NULL,
+    Apellidos VARCHAR(100) NOT NULL,
+    FechaNacimiento DATE,
+    Telefono VARCHAR(20),
+    Correo VARCHAR(100)
+);
+GO
+
+CREATE TABLE Medicos
+(
+    MedicoId INT IDENTITY(1,1) PRIMARY KEY,
+    Nombres VARCHAR(100) NOT NULL,
+    Apellidos VARCHAR(100) NOT NULL,
+    Especialidad VARCHAR(100)
+);
+GO
+
+CREATE TABLE Citas
+(
+    CitaId INT IDENTITY(1,1) PRIMARY KEY,
+    PacienteId INT NOT NULL,
+    MedicoId INT NOT NULL,
+    FechaCita DATETIME NOT NULL,
+    Motivo VARCHAR(200),
+
+    CONSTRAINT FK_Citas_Pacientes
+        FOREIGN KEY (PacienteId)
+        REFERENCES Pacientes(PacienteId),
+
+    CONSTRAINT FK_Citas_Medicos
+        FOREIGN KEY (MedicoId)
+        REFERENCES Medicos(MedicoId)
+);
+GO

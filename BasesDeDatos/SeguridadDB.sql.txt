@@ -1,0 +1,33 @@
+CREATE DATABASE SeguridadDB;
+GO
+
+USE SeguridadDB;
+GO
+
+CREATE TABLE Roles
+(
+    RolId INT IDENTITY(1,1) PRIMARY KEY,
+    Nombre VARCHAR(50) NOT NULL
+);
+GO
+
+CREATE TABLE Usuarios
+(
+    UsuarioId INT IDENTITY(1,1) PRIMARY KEY,
+    NombreUsuario VARCHAR(50) NOT NULL,
+    Correo VARCHAR(100) NOT NULL,
+    PasswordHash VARCHAR(255) NOT NULL,
+    RolId INT NOT NULL,
+
+    CONSTRAINT FK_Usuarios_Roles
+        FOREIGN KEY (RolId)
+        REFERENCES Roles(RolId)
+);
+GO
+
+CREATE TABLE Permisos
+(
+    PermisoId INT IDENTITY(1,1) PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL
+);
+GO
