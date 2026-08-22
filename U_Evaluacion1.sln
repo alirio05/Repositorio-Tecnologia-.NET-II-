@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalAppointments.Infrast
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalAppointments.Api", "MedicalAppointments.Api\MedicalAppointments.Api.csproj", "{1F485469-9763-4E41-BAE4-D5A7CDD87163}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroservicioClinica", "MicroservicioClinica\MicroservicioClinica.csproj", "{33512369-7B4F-47F0-B33C-B42F82612F53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{1F485469-9763-4E41-BAE4-D5A7CDD87163}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F485469-9763-4E41-BAE4-D5A7CDD87163}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F485469-9763-4E41-BAE4-D5A7CDD87163}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33512369-7B4F-47F0-B33C-B42F82612F53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33512369-7B4F-47F0-B33C-B42F82612F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33512369-7B4F-47F0-B33C-B42F82612F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33512369-7B4F-47F0-B33C-B42F82612F53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
