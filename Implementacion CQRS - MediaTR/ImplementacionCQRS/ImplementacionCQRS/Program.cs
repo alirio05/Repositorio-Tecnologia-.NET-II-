@@ -1,26 +1,16 @@
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MicroservicioClinica.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 builder.Services.AddControllers();
 
 // Registrar MediatR
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
-// Conexión a ClinicaDB
-builder.Services.AddDbContext<ClinicaDBContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("ClinicaDB")));
-
-// Conexión a SeguridadDB
-builder.Services.AddDbContext<SeguridadDBContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("SeguridadDB")));
-
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
