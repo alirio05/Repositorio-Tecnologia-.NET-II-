@@ -1,6 +1,8 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MicroservicioClinica.Data;
+using Nuget_Persistence.Abstractions;
+using Nuget_Persistence.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,15 @@ builder.Services.AddDbContext<ClinicaDBContext>(options =>
 builder.Services.AddDbContext<SeguridadDBContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("SeguridadDB")));
+
+// Registrar DbContext para el repositorio genérico
+builder.Services.AddScoped<DbContext>(serviceProvider =>
+    serviceProvider.GetRequiredService<ClinicaDBContext>());
+
+// Registrar repositorio genérico
+builder.Services.AddScoped(
+    typeof(IRepository<>),
+    typeof(Repository<>));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MicroservicioClinica.Data;
 using MicroservicioClinica.Models;
+using Nuget_Persistence.Abstractions;
 
 namespace MicroservicioClinica.Controllers
 {
@@ -9,19 +8,28 @@ namespace MicroservicioClinica.Controllers
     [Route("api/[controller]")]
     public class PacientesController : ControllerBase
     {
-        private readonly ClinicaDBContext _context;
+        private readonly IRepository<Paciente> _repository;
 
-        public PacientesController(ClinicaDBContext context)
+        public PacientesController(IRepository<Paciente> repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Paciente>>> GetPacientes()
+        public async Task<ActionResult> GetPacientes(
+            int pageNumber = 1,
+            int pageSize = 10,
+            string? orderBy = "Nombres",
+            bool orderDescending = false)
         {
-            var pacientes = await _context.Pacientes.ToListAsync();
+            var result = await _repository.GetPagedAsync(
+                pageNumber,
+                pageSize,
+                orderBy: orderBy,
+                orderDescending: orderDescending
+            );
 
-            return Ok(pacientes);
+            return Ok(result);
         }
     }
 }
