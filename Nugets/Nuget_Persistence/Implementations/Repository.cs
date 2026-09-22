@@ -51,6 +51,25 @@ namespace Nuget_Persistence.Implementations
                 cancellationToken);
         }
 
+        public async Task<TEntity?> GetOneByAsync(
+            Expression<Func<TEntity, bool>> filter,
+            bool asNoTracking = true,
+            CancellationToken cancellationToken = default)
+        {
+            ArgumentNullException.ThrowIfNull(filter);
+
+            IQueryable<TEntity> query = _dbSet;
+
+            if (asNoTracking)
+            {
+                query = query.AsNoTracking();
+            }
+
+            return await query.FirstOrDefaultAsync(
+                filter,
+                cancellationToken);
+        }
+
         public async Task<PagedResult<TEntity>> GetPagedAsync(
             int pageNumber,
             int pageSize,
@@ -121,9 +140,13 @@ namespace Nuget_Persistence.Implementations
 
                 query = orderDescending
                     ? query.OrderByDescending(
-                        entity => EF.Property<object>(entity, property.Name))
+                        entity => EF.Property<object>(
+                            entity,
+                            property.Name))
                     : query.OrderBy(
-                        entity => EF.Property<object>(entity, property.Name));
+                        entity => EF.Property<object>(
+                            entity,
+                            property.Name));
             }
 
             query = query
@@ -165,6 +188,13 @@ namespace Nuget_Persistence.Implementations
 
             await _dbSet.AddRangeAsync(
                 entities,
+                cancellationToken);
+        }
+
+        public async Task<int> SaveChangesAsync(
+            CancellationToken cancellationToken = default)
+        {
+            return await _context.SaveChangesAsync(
                 cancellationToken);
         }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,6 +14,11 @@ namespace Nuget_Persistence.Abstractions
             CancellationToken cancellationToken = default);
 
         Task<TEntity?> GetOneAsync(
+            Expression<Func<TEntity, bool>> filter,
+            bool asNoTracking = true,
+            CancellationToken cancellationToken = default);
+
+        Task<TEntity?> GetOneByAsync(
             Expression<Func<TEntity, bool>> filter,
             bool asNoTracking = true,
             CancellationToken cancellationToken = default);
@@ -36,6 +40,9 @@ namespace Nuget_Persistence.Abstractions
 
         Task AddRangeAsync(
             IEnumerable<TEntity> entities,
+            CancellationToken cancellationToken = default);
+
+        Task<int> SaveChangesAsync(
             CancellationToken cancellationToken = default);
 
         void Update(TEntity entity);
