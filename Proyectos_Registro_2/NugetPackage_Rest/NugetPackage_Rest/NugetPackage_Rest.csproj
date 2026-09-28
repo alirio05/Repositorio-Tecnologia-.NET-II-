@@ -8,7 +8,10 @@
     <!-- Metadatos del paquete NuGet -->
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>NugetPackageRest</PackageId>
-    <Version>2.2.0</Version>
+
+<!-- Versión 2.3.0: actualización por mejora compatible de WithFormUrlEncoded -->
+    <Version>2.3.0</Version>
+
     <Authors>Autor del curso</Authors>
     <Description>Cliente HTTP fluido para la comunicación entre microservicios .NET.</Description>
   </PropertyGroup>

@@ -98,6 +98,11 @@ namespace NugetPackage_Rest.Builders
             return this;
         }
 
+        // Cambio realizado en el Paso 28:
+        // se documenta explícitamente el contenido application/x-www-form-urlencoded.
+        /// <summary>
+        /// Agrega contenido de formulario codificado como application/x-www-form-urlencoded.
+        /// </summary>
         public IFluentContent WithFormUrlEncoded(
             [NotNull] IDictionary<string, string> data)
         {
