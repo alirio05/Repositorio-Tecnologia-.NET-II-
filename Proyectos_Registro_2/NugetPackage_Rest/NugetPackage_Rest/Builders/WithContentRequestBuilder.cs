@@ -83,6 +83,23 @@ namespace NugetPackage_Rest.Builders
             return this;
         }
 
+        public IFluentAuth<IFluentFormat> WithQuery(
+            IDictionary<string, string> parametros)
+        {
+            var query = string.Join(
+                "&",
+                parametros.Select(
+                    parametro =>
+                        $"{Uri.EscapeDataString(parametro.Key)}={Uri.EscapeDataString(parametro.Value)}"));
+
+            var separator = _request.RequestUri!.Query.Length > 0 ? "&" : "?";
+
+            _request.RequestUri = new Uri(
+                $"{_request.RequestUri}{separator}{query}");
+
+            return this;
+        }
+
         public IFluentContent WithBody([NotNull] object body)
         {
             _request.AddContent(body);
