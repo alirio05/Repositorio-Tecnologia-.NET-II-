@@ -7,9 +7,9 @@ namespace NugetPackage_Rest.Interfaces.IFluents
     /// paquete.</summary>
     public interface IFluentResponse
     {
-        Task<string> GetContentAsStringAsync();
-        Task<byte[]> GetContentAsByteArrayAsync();
-        Task<T> DeserializeWithAsync<T>();
+        Task<string> GetContentAsStringAsync(CancellationToken cancellationToken = default);
+        Task<byte[]> GetContentAsByteArrayAsync(CancellationToken cancellationToken = default);
+        Task<T> DeserializeWithAsync<T>(CancellationToken cancellationToken = default);
         TaskAwaiter<HttpResponseMessage> GetAwaiter();
     }
 }

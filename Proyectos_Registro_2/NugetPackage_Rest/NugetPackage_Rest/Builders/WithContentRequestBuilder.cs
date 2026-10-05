@@ -116,12 +116,16 @@ namespace NugetPackage_Rest.Builders
             return this;
         }
 
-        public async Task<string> GetContentAsStringAsync()
+        public async Task<string> GetContentAsStringAsync(
+            CancellationToken cancellationToken = default)
         {
             await WriteRequestLog();
 
             var response =
-                await HttpRequestExecutor.SendAsync(_client, _request);
+                await HttpRequestExecutor.SendAsync(
+                    _client,
+                    _request,
+                    cancellationToken);
 
             await HttpRequestExecutor.EnsureSuccessAsync(
                 response,
@@ -132,12 +136,16 @@ namespace NugetPackage_Rest.Builders
                 _request);
         }
 
-        public async Task<byte[]> GetContentAsByteArrayAsync()
+        public async Task<byte[]> GetContentAsByteArrayAsync(
+            CancellationToken cancellationToken = default)
         {
             await WriteRequestLog();
 
             var response =
-                await HttpRequestExecutor.SendAsync(_client, _request);
+                await HttpRequestExecutor.SendAsync(
+                    _client,
+                    _request,
+                    cancellationToken);
 
             await HttpRequestExecutor.EnsureSuccessAsync(
                 response,
@@ -148,12 +156,16 @@ namespace NugetPackage_Rest.Builders
                 _request);
         }
 
-        public async Task<T> DeserializeWithAsync<T>()
+        public async Task<T> DeserializeWithAsync<T>(
+            CancellationToken cancellationToken = default)
         {
             await WriteRequestLog();
 
             var response =
-                await HttpRequestExecutor.SendAsync(_client, _request);
+                await HttpRequestExecutor.SendAsync(
+                    _client,
+                    _request,
+                    cancellationToken);
 
             await HttpRequestExecutor.EnsureSuccessAsync(
                 response,
