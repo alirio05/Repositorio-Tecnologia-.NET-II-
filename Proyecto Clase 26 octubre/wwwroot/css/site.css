@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    color: #212529;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1rem 2rem;
+    background-color: #212529;
+}
+
+.navbar a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 1.5rem 2rem;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 0.5rem;
+    border: 1px solid #dee2e6;
+    text-align: left;
+}
+
+.table thead {
+    background-color: #f1f3f5;
+}

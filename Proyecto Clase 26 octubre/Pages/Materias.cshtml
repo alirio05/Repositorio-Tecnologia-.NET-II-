@@ -1,0 +1,35 @@
+@page
+@model MiAplicacionWeb.Pages.MateriasModel
+@{
+    ViewData["Title"] = "Lista de materias";
+}
+
+<h1>Lista de materias</h1>
+@if (Model.Datos.Rows.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                @foreach (System.Data.DataColumn columna in Model.Datos.Columns)
+                {
+                    <th>@columna.ColumnName</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (System.Data.DataRow fila in Model.Datos.Rows)
+            {
+                <tr>
+                    @foreach (System.Data.DataColumn columna in Model.Datos.Columns)
+                    {
+                        <td>@fila[columna]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No hay materias registradas.</p>
+}

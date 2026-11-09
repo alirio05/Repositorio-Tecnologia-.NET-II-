@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MiAplicacionWeb</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a asp-page="/Index">Inicio</a>
+            <a asp-page="/Estudiantes">Estudiantes</a>
+            <a asp-page="/Docentes">Docentes</a>
+            <a asp-page="/Materias">Materias</a>
+        </nav>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+</body>
+</html>
